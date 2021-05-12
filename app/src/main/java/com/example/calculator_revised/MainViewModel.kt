@@ -8,14 +8,10 @@ class MainViewModel :ViewModel(){
     var result = 0.0
     var num1  = ""
     var num2  = ""
-    //var result = 0.0
     var operator = ""
+    var data =""
 
-    public fun calculations(value : String) : String {
-        Log.i("namita", "value")
-        //var str = ""
-
-
+    fun calculations(value : String) : String {
         try {
 
             if (value == "c") {
@@ -30,7 +26,6 @@ class MainViewModel :ViewModel(){
             //if input is an oprator
             else if (value == "+" || value == "-" || value == "*" || value == "/" || value== "%"||value=="=") {
                 if (num1 != "" && num2 == "" && value != "=") {
-                    //str = num1.toString().plus(value)
                     operator = value
                     return (value)
                 } else if (num1 != "" && num2 != "") {
@@ -54,7 +49,6 @@ class MainViewModel :ViewModel(){
                     }
 
                     num1 = result.toString()
-                    //str = result.toString()
                     num2 = ""
                     operator = value
                     return (result.toString())
@@ -82,4 +76,13 @@ class MainViewModel :ViewModel(){
 
         return value
     }
+
+    fun holdData(str : String) {
+        data = str
+    }
+
+    fun getheldData():String {
+        return data
+    }
+
 }

@@ -24,9 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         textId = findViewById(R.id.resultText)
 
-        //textId.setText( viewModel.result.toString())
-
-        textId.text = viewModel.result.toString()
+        textId.text = viewModel.getheldData()
 
         val plus: Button = findViewById(R.id.plusButton)
         val minus: Button = findViewById(R.id.minusButton)
@@ -86,6 +84,11 @@ class MainActivity : AppCompatActivity() {
                      finish()}
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroy() {
+        val str = viewModel.holdData((textId.text).toString())
+        super.onDestroy()
     }
 
 }
