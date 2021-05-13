@@ -1,8 +1,6 @@
-package com.example.calculator_revised
+package com.namita.calculator
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
-import kotlin.system.exitProcess
 
 class MainViewModel :ViewModel(){
     var result = 0.0
