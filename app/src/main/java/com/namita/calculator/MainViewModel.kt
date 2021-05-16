@@ -1,5 +1,6 @@
 package com.namita.calculator
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MainViewModel :ViewModel(){
@@ -8,24 +9,29 @@ class MainViewModel :ViewModel(){
     var num2  = ""
     var operator = ""
     var data =""
+    val dataValues = MutableLiveData<String>();
 
-    fun calculations(value : String) : String {
+    fun calculations(input : String) {
         try {
 
-            if (value == "c") {
+            if (input == "c") {
                 num1 = ""
                 num2 = ""
                 result = 0.0
                 //str = ""
                 operator = ""
-                return ""
+                dataValues.value = ""
+                return
+            //    return ""
             }
 
             //if input is an oprator
-            else if (value == "+" || value == "-" || value == "*" || value == "/" || value== "%"||value=="=") {
-                if (num1 != "" && num2 == "" && value != "=") {
-                    operator = value
-                    return (value)
+            else if (input == "+" || input == "-" || input == "*" || input == "/" || input== "%"||input=="=") {
+                if (num1 != "" && num2 == "" && input != "=") {
+                    operator = input
+                    //return (input)
+                    dataValues.value = input
+                    return
                 } else if (num1 != "" && num2 != "") {
 
                     when (operator) {
@@ -48,31 +54,42 @@ class MainViewModel :ViewModel(){
 
                     num1 = result.toString()
                     num2 = ""
-                    operator = value
-                    return (result.toString())
+                    operator = input
+                    //return (result.toString())
+                    dataValues.value = (result.toString())
+                    return
                 } else {
-                    num1 = value
-                    return (value)
+                    num1 = input
+                    //return (input)
+                    dataValues.value = input
+                    return
                 }
             }
 
             //if input is a digit
             else {
                 if(operator == ""){
-                    num1 = num1.plus(value)
-                    return num1
+                    num1 = num1.plus(input)
+                   // return num1
+                    dataValues.value = num1
+                    return
                 }
                 else {
-                    num2 = num2.plus(value)
-                    return num2
+                    num2 = num2.plus(input)
+                    //return num2
+                    dataValues.value = num2
+                    return
                 }
             }
     }              //end try block
         catch(exception: Exception){
-            return ("Incorrect command")
+           // return ("Incorrect command")
+            dataValues.value = "Incorrect command"
+            return
         }
 
-        return value
+        //return input
+        dataValues.value = input
     }
 
     fun holdData(str : String) {
