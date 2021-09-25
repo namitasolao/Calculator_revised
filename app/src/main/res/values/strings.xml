@@ -20,4 +20,5 @@
     <string name="nineText">9</string>
     <string name="aboutText">About</string>
     <string name="closeText">Close</string>
+    <string name="channel_name">Results</string>
 </resources>

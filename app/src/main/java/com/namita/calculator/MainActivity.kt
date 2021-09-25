@@ -5,15 +5,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.view.View
 import android.widget.Button
-import android.widget.TableLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.forEach
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.namita.calculator.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,6 +29,8 @@ class MainActivity : AppCompatActivity() {
         viewModel.dataValues.observe(this, Observer {
             textId.text = it
         })
+
+        createNotificationChannel(this)
 
         findViewById<Button>(R.id.plusButton).setOnClickListener{ onButtonClick("+")}
         findViewById<Button>(R.id.minusButton).setOnClickListener{ onButtonClick("-")}
@@ -54,6 +52,10 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.sevenButton).setOnClickListener{ onButtonClick("7")}
         findViewById<Button>(R.id.eightButton).setOnClickListener{ onButtonClick("8")}
         findViewById<Button>(R.id.nineButton).setOnClickListener{ onButtonClick("9")}
+
+        findViewById<TextView>(R.id.resultText).setOnClickListener {
+            viewModel.persistResultToNotifications(this)
+        }
 
 
 //        plus.setOnClickListener { textId.text = viewModel.calculations("+") }
